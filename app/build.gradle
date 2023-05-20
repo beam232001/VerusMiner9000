@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    compileOptions {
+        sourceCompatibility '1.8'
+        targetCompatibility '1.8'
+    }
+
+    defaultConfig {
+        applicationId "shmutalov.verusminer9000"
+        minSdkVersion 22
+        targetSdkVersion 28 // to avoid an error 13 when running exe in assets folder (sdk 29 gives the error)
+        versionCode 7
+        versionName "0.0.14"
+        buildConfigField "long", "BUILD_TIME", System.currentTimeMillis() + "L"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false // Disable it for now, problem while fetching Json data for Pool API
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.github.KingsMentor:MobileVisionBarcodeScanner:2.0.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'org.ocpsoft.prettytime:prettytime:4.0.2.Final'
+    implementation 'com.android.volley:volley:1.1.1'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10'
+}

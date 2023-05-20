@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="beam232001.monerominer9000"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<!--    <uses-permission android:name="android.permission.CAMERA" />-->
+
+    <application
+        android:requestLegacyExternalStorage="true"
+        android:allowBackup="true"
+        android:usesCleartextTraffic="true"
+        tools:ignore="UnusedAttribute"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+                android:name="com.google.android.gms.vision.DEPENDENCIES"
+                android:value="barcode" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notification" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/c_white" />
+
+        <meta-data android:name="com.samsung.android.keepalive.density" android:value="true" />
+        <meta-data android:name="com.samsung.android.multidisplay.keep_process_alive" android:value="true"/>
+
+        <activity
+            android:name="beam232001.monerominer9000.MainActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|density|screenLayout|uiMode|keyboard|keyboardHidden|navigation"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name="beam232001.monerominer9000.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+	    <activity
+            android:name="beam232001.monerominer9000.QrCodeScannerActivity"
+            android:parentActivityName="beam232001.monerominer9000.MainActivity">
+        </activity>
+
+        <activity
+            android:name="beam232001.monerominer9000.WizardHomeActivity"
+            android:parentActivityName="beam232001.monerominer9000.MainActivity">
+        </activity>
+
+        <activity
+            android:name="beam232001.monerominer9000.WizardAddressActivity"
+            android:parentActivityName="beam232001.monerominer9000.MainActivity">
+        </activity>
+
+        <activity
+            android:name="beam232001.monerominer9000.WizardPoolActivity"
+            android:parentActivityName="beam232001.monerominer9000.MainActivity">
+        </activity>
+
+        <activity
+            android:name="beam232001.monerominer9000.WizardSettingsActivity"
+            android:parentActivityName="beam232001.monerominer9000.MainActivity">
+        </activity>
+
+        <activity
+            android:name="beam232001.monerominer9000.BaseActivity"
+            android:parentActivityName="beam232001.monerominer9000.MainActivity">
+        </activity>
+
+        <service
+            android:name="beam232001.monerominer9000.miner.MoneroBinMiningService"
+            android:enabled="true"/>
+
+        <receiver
+            android:name="beam232001.monerominer9000.NotificationsReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="OPEN_ACTION"/>
+                <action android:name="STOP_ACTION"/>
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
